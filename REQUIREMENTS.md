@@ -5,20 +5,27 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
+|REST|Route|Token required|
+|-------|---|---|
+|Index|products [GET]||
+|Show|products/:id [GET]||
+|Create|products [POST]|yes|
+|[OPTIONAL] Top 5 most popular products| products/top5 [GET]|
+|[OPTIONAL] Products by category|products?category=productCategory [GET]|
 
 #### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
+|REST|Route|Token required|
+|-------|---|---|
+|Index|products [GET]|yes|
+|Show|products/:id [GET]|yes|
+|Create N|products [POST]|yes|
 
 #### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+|REST|Route|Token required|
+|-------|---|---|
+|Current Order by user|orders?user=userId [GET]|yes|
+|[OPTIONAL] Completed Orders by user|orders?user=userId&status=completed [GET]|yes|
+
 
 ## Data Shapes
 #### Product
@@ -40,3 +47,26 @@ These are the notes from a meeting with the frontend developer that describe wha
 - user_id
 - status of order (active or complete)
 
+
+## Database Tables
+#### Products
+-  id : primary key
+- name : varchar
+- price : real
+
+#### User
+- id : primary key
+- firstName : varchar
+- lastName : varchar
+- password : varchar
+
+#### Orders
+- id : primary key
+- user_id : foreign key
+- status of order (active or complete) : varchar
+
+#### Orders-Product
+- id : primary key
+- order_id: foreign key
+- product_id: foreign key
+- quantity : integer

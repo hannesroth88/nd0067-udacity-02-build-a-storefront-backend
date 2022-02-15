@@ -1,12 +1,15 @@
-import express, { Request, Response } from 'express'
+import express = require("express")
 
-const app: express.Application = express()
-const address: string = "0.0.0.0:3000"
+const app = express()
 
-app.get('/', function (req: Request, res: Response) {
-    res.send('Hello World!')
+const port = 8080 // default port to listen
+
+
+app.get("/", (req: express.Request, res: express.Response) => {
+  res.status(200).send("Storefront Backend up and running")
 })
 
-app.listen(3000, function () {
-    console.log(`starting app on: ${address}`)
+// start the Express server
+app.listen(port, () => {
+  console.log(`server started at http://localhost:${port}`)
 })
