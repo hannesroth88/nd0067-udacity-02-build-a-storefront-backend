@@ -16,15 +16,16 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### Users
 |REST|Route|Token required|
 |-------|---|---|
-|Index|products [GET]|yes|
-|Show|products/:id [GET]|yes|
-|Create N|products [POST]|yes|
+|Index|users [GET]|yes|
+|Show|users/:id [GET]|yes|
+|Create|user [POST]|yes|
 
 #### Orders
 |REST|Route|Token required|
 |-------|---|---|
 |Current Order by user|orders?user=userId [GET]|yes|
 |[OPTIONAL] Completed Orders by user|orders?user=userId&status=completed [GET]|yes|
+|Add product to order|orders/:id/product [POST]|yes|
 
 
 ## Data Shapes

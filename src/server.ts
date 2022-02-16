@@ -1,9 +1,11 @@
 import express = require("express")
+import userRoutes from "./routes/users"
 
 const app = express()
 
 const port = 8080 // default port to listen
 
+userRoutes(app)
 
 app.get("/", (req: express.Request, res: express.Response) => {
   res.status(200).send("Storefront Backend up and running")
