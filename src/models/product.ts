@@ -5,7 +5,6 @@ export type Product = {
   id: number | null
   name: string
   price: number
-  password: string
 }
 
 export class ProductStore {
@@ -59,26 +58,5 @@ export class ProductStore {
       throw new Error(`Could not add new Product ${product.name}. Error: ${err}`)
     }
   }
-  
-  async delete(id: string): Promise<Product> {
-    try {
-      const sql = "DELETE FROM products WHERE id=($1)"
-      // @ts-ignore
-      const conn = await Client.connect()
-
-      const result = await conn.query(sql, [id])
-
-      const product = result.rows[0]
-
-      conn.release()
-
-      return product
-    } catch (err) {
-      throw new Error(`Could not delete Product ${id}. Error: ${err}`)
-    }
-  }
-
-
-
 
 }

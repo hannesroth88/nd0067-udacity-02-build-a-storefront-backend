@@ -28,7 +28,6 @@ if (NODE_ENV == "test") {
     password: POSTGRES_PASSWORD_TEST
   })
   console.log(`using Postgres DB: ${POSTGRES_HOST_TEST}:${POSTGRES_PORT_TEST} DB:${POSTGRES_DB_TEST}  User:${POSTGRES_USER_TEST}`)
-
 } else if (NODE_ENV == "dev") {
   console.log("connecting to Dev DB")
   client = new Pool({

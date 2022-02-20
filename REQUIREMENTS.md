@@ -45,7 +45,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - id
 - id of each product in the order
 - quantity of each product in the order
-- user_id
+- userId
 - status of order (active or complete)
 
 
@@ -63,11 +63,11 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Orders
 - id : primary key
-- user_id : foreign key
+- userId : foreign key
 - status of order (active or complete) : varchar
 
 #### Orders-Product
 - id : primary key
-- order_id: foreign key
-- product_id: foreign key
+- orderId: foreign key
+- productId: foreign key
 - quantity : integer
