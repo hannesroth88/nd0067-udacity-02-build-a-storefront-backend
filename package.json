@@ -9,7 +9,8 @@
     "test": "db-migrate reset & db-migrate up & npm run build & jasmine-ts",
     "lint": "eslint . --ext .ts",
     "prettier": "npx prettier --config .prettierrc --write ./src/**/*.ts",
-    "build": "tsc --build"
+    "build": "tsc --build",
+    "db": "docker compose up"
   },
   "author": "Udacity",
   "license": "ISC",

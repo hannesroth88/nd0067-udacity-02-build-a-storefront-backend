@@ -13,7 +13,7 @@ const authorize = async (req: express.Request, res: express.Response) => {
    */
 
   try {
-    const userId = req.body.id as string
+    const userId = parseInt(req.body.id) as number
     const userPassword = req.body.password as string
 
     // check and get User by userId

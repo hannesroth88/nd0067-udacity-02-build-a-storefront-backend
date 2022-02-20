@@ -81,7 +81,7 @@ describe("Main Test", () => {
   describe("Product", () => {
     const testProduct:Product = {
       id: null,
-      name: "SmartMeter 2.0",
+      name: "Radiator",
       price: 20.2
     }
     it("Create Product /products (POST)", async () => {

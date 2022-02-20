@@ -12,8 +12,15 @@ const index = async (req: Request, res: Response): Promise<void> => {
 }
 
 const show = async (req: Request, res: Response): Promise<void> => {
-  const user = await store.show(req.params.id)
-  res.json(user)
+  try {
+    const userId = parseInt(req.params.id)
+    const user = await store.show(userId)
+    res.json(user)
+  } catch (err) {
+    console.log("Error showing user: " + err)
+    res.status(400)
+    res.json(`Error creating user: ${err}`)
+  }
 }
 
 const create = async (req: Request, res: Response): Promise<void> => {

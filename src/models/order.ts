@@ -1,14 +1,32 @@
 // @ts-ignore
 import Client from "../database"
+import { Product } from "./product"
 
-export type Order = {
-  id: number | null
-  userId: number
+export type OrderDb = {
+  id: number | null,
+  userId: number,
   status: string
 }
 
+export type OrderProductDb = {
+  id: number | null,
+  orderId: number,
+  productId: string,
+  quantity:number
+}
+
+export type Order = {
+  id: number | null
+  userId: number,
+  status: string,
+  products: [
+    id:number,
+    quantity:number
+   ]
+  }
+
 export class OrderStore {
-  async index(): Promise<Order[]> {
+  async index(): Promise<OrderDb[]> {
     try {
       // @ts-ignore
       const conn = await Client.connect()
@@ -24,7 +42,7 @@ export class OrderStore {
     }
   }
 
-  async show(id: string): Promise<Order[]> {
+  async show(id: string): Promise<OrderDb[]> {
     try {
       // @ts-ignore
       const conn = await Client.connect()
@@ -41,7 +59,7 @@ export class OrderStore {
     }
   }
 
-  async showActiveByUser(user_id: string, status: string): Promise<Order[]> {
+  async showActiveByUser(user_id: string, status: string): Promise<OrderDb[]> {
     try {
       // @ts-ignore
       const conn = await Client.connect()
@@ -58,7 +76,7 @@ export class OrderStore {
     }
   }
 
-  async create(order: Order): Promise<Order> {
+  async create(order: OrderDb): Promise<OrderDb> {
     try {
       const sql = "INSERT INTO orders (\"userId\", status) VALUES($1, $2) RETURNING *"
       // @ts-ignore
@@ -76,7 +94,7 @@ export class OrderStore {
     }
   }
 
-  async addProduct(product_id: number, order_id: number, quantity: number): Promise<Order> {
+  async addProduct(product_id: number, order_id: number, quantity: number): Promise<OrderDb> {
     try {
       const sql = "INSERT INTO order_products (product_id,order_id,quantity) VALUES($1, $2, $3) RETURNING *"
       // @ts-ignore

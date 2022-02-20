@@ -1,12 +1,14 @@
 import express, { Request, Response } from "express"
-import { Order, OrderStore } from "../models/order"
+import { OrderDb, OrderStore } from "../models/order"
 import "dotenv/config"
 import authenticateMiddleware from "../middlewares/authenticateMiddleware"
+import { UserStore } from "../models/user"
 
 const store = new OrderStore()
+const userStore = new UserStore()
 
 const index = async (req: Request, res: Response): Promise<void> => {
-  const orders: Order[] = await store.index()
+  const orders: OrderDb[] = await store.index()
   res.json(orders)
 }
 
@@ -19,14 +21,20 @@ const create = async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = req.body.userId as number
     const status = req.body.status as string
-    const order: Order = {
-      id: null,
-      userId: userId,
-      status: status,
+    const user = await userStore.show(userId)
+    if (user) {
+      const order: OrderDb = {
+        id: null,
+        userId: userId,
+        status: status,
+      }
+      const orderResponse = await store.create(order)
+      res.json(orderResponse)
+    } else {
+      console.log("Error: userId not found in Database")
+      res.status(404)
+      res.json(`userId:${userId} not found in Database`)
     }
-
-    const orderResponse = await store.create(order)
-    res.json(orderResponse)
   } catch (err) {
     console.log("Error Creating order: " + err)
     res.status(400)
