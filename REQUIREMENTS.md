@@ -25,6 +25,12 @@ These are the notes from a meeting with the frontend developer that describe wha
 |Add product to order|orders/:id/product [POST]|yes|
 \* assumption latest order is the one with highest orderId 
 
+#### Authenticate
+|REST|Route|BodyParam|
+|-------|---|---|
+|get JWT Token for user|/authorize [GET]|id (userId), password (plain pw of user)|
+
+
 ## Data Shapes
 #### Product
 -  id
