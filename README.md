@@ -39,3 +39,27 @@ Endpoints are listed under REQUIREMENTS.md
 As creating users need a valid JWT Token, you are provided with the following start admin user.
 - UserId:1
 - Password:1234
+
+
+# .env File
+put the following into an .env file:
+
+```
+POSTGRES_HOST=127.0.0.1
+POSTGRES_PORT=5433
+POSTGRES_DB=full_stack_dev
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=fenster1234
+
+POSTGRES_HOST_TEST=127.0.0.1
+POSTGRES_PORT_TEST=5433
+POSTGRES_DB_TEST=full_stack_test
+POSTGRES_USER_TEST=postgres
+POSTGRES_PASSWORD_TEST=fenster1234
+
+NODE_ENV=dev
+BCRYPT_PASSWORD=somePassword
+SALT_ROUNDS=10
+PEPPER=ADDABITP3PP3r
+TOKEN_SECRET=ThESecReTTokEn
+```

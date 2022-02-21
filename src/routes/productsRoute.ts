@@ -6,13 +6,25 @@ import authenticateMiddleware from "../middlewares/authenticateMiddleware"
 const store = new ProductStore()
 
 const index = async (req: Request, res: Response): Promise<void> => {
-  const products: Product[] = await store.index()
-  res.json(products)
+  try {
+    const products: Product[] = await store.index()
+    res.json(products)
+  } catch (err) {
+    console.log("Error showing all products: " + err)
+    res.status(400)
+    res.json(`Error showing all products: ${err}`)
+  }
 }
 
 const show = async (req: Request, res: Response): Promise<void> => {
-  const product = await store.show(req.params.id)
-  res.json(product)
+  try {
+    const product = await store.show(req.params.id)
+    res.json(product)
+  } catch (err) {
+    console.log("Error showing product: " + err)
+    res.status(400)
+    res.json(`Error showing product: ${err}`)
+  }
 }
 
 const create = async (req: Request, res: Response): Promise<void> => {

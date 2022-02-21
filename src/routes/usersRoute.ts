@@ -7,8 +7,14 @@ import authenticateMiddleware from "../middlewares/authenticateMiddleware"
 const store = new UserStore()
 
 const index = async (req: Request, res: Response): Promise<void> => {
-  const users: User[] = await store.index()
-  res.json(users)
+  try {
+    const users: User[] = await store.index()
+    res.json(users)
+  } catch (err) {
+    console.log("Error showing all users: " + err)
+    res.status(400)
+    res.json(`Error showing all users: ${err}`)
+  }
 }
 
 const show = async (req: Request, res: Response): Promise<void> => {
@@ -19,7 +25,7 @@ const show = async (req: Request, res: Response): Promise<void> => {
   } catch (err) {
     console.log("Error showing user: " + err)
     res.status(400)
-    res.json(`Error creating user: ${err}`)
+    res.json(`Error showing user: ${err}`)
   }
 }
 
@@ -39,7 +45,7 @@ const create = async (req: Request, res: Response): Promise<void> => {
     const userResponse = await store.create(user)
     res.json(userResponse)
   } catch (err) {
-    console.log("Error Creating user: " + err)
+    console.log("Error creating user: " + err)
     res.status(400)
     res.json(`Error creating user: ${err}`)
   }

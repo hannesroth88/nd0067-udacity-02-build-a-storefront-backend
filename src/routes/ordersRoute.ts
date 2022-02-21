@@ -12,15 +12,21 @@ const index = async (req: Request, res: Response): Promise<void> => {
     const orders: Order[] = await store.index()
     res.json(orders)
   } catch (err) {
-    console.log("Error Creating order: " + err)
+    console.log("Error showing all orders: " + err)
     res.status(400)
-    res.json(`Error creating order: ${err}`)
+    res.json(`Error showing all orders: ${err}`)
   }
 }
 
 const show = async (req: Request, res: Response): Promise<void> => {
-  const order = await store.show(req.params.id)
-  res.json(order)
+  try {
+    const order = await store.show(req.params.id)
+    res.json(order)
+  } catch (err) {
+    console.log("Error showing order: " + err)
+    res.status(400)
+    res.json(`Error showing order: ${err}`)
+  }
 }
 
 const create = async (req: Request, res: Response): Promise<void> => {
