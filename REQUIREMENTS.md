@@ -23,6 +23,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 |-------|---|---|
 |Current Order by user *|orders/user/:id/current [GET]|yes|    
 |Add product to order|orders/:id/product [POST]|yes|
+
 \* assumption latest order is the one with highest orderId 
 
 #### Authenticate
