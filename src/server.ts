@@ -2,8 +2,8 @@ import express = require("express")
 var cors = require("cors")
 import authenticateRoutes from "./routes/authenticateRoute"
 import usersRoutes from "./routes/usersRoute"
-import productRoutes from "./routes/productRoute"
-import orderRoutes from "./routes/orderRoute"
+import productRoutes from "./routes/productsRoute"
+import orderRoutes from "./routes/ordersRoute"
 
 const app = express()
 const port = 8080 // default port to listen
