@@ -31,7 +31,7 @@ Database will be resetted in the beginning and some test rows inserted. After al
 Start the database
 
 The Application can be used.
-Base url is localhost:8080
+Base url is `http://localhost:8080`
 
 Endpoints are listed under REQUIREMENTS.md
 

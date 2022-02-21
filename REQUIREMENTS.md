@@ -10,8 +10,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 |Index|products [GET]||
 |Show|products/:id [GET]||
 |Create|products [POST]|yes|
-|[OPTIONAL] Top 5 most popular products| products/top5 [GET]|
-|[OPTIONAL] Products by category|products?category=productCategory [GET]|
 
 #### Users
 |REST|Route|Token required|
@@ -24,7 +22,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 |REST|Route|Token required|
 |-------|---|---|
 |Current Order by user *|orders/user/:id/current [GET]|yes|    
-|[OPTIONAL] Completed Orders by user|orders/users/:id?status=completed [GET]|yes|
 |Add product to order|orders/:id/product [POST]|yes|
 \* assumption latest order is the one with highest orderId 
 
@@ -33,7 +30,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 -  id
 - name
 - price
-- [OPTIONAL] category
 
 #### User
 - id
