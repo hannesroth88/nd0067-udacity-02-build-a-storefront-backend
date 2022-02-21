@@ -20,7 +20,7 @@ export class UserStore {
 
       return result.rows
     } catch (err) {
-      throw new Error(`Could not get user. Error: ${err}`)
+      throw new Error(`Could not get user: ${err}`)
     }
   }
 
@@ -37,7 +37,7 @@ export class UserStore {
 
       return user
     } catch (err) {
-      throw new Error(`Could not get user with id ${id}. Error: ${err}`)
+      throw new Error(`Could not get user with id ${id}: ${err}`)
     }
   }
 
@@ -55,8 +55,7 @@ export class UserStore {
 
       return book
     } catch (err) {
-      throw new Error(`Could not add new user ${u.firstName} ${u.lastName}. Error: ${err}`)
+      throw new Error(`Could not add new user ${u.firstName} ${u.lastName}: ${err}`)
     }
   }
-
 }

@@ -4,12 +4,11 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "start": "node src/server.ts",
-    "watch": "tsc-watch --noClear -p tsconfig.json --onSuccess \"node ./dist/server.js\"",
+    "start": "npm run prettier & tsc & node dist/server.js",
+    "watch": "npm run prettier & tsc-watch --noClear -p tsconfig.json --onSuccess \"node ./dist/server.js\"",
     "test": "db-migrate reset & db-migrate up & npm run build & jasmine-ts",
     "lint": "eslint . --ext .ts",
     "prettier": "npx prettier --config .prettierrc --write ./src/**/*.ts",
-    "build": "tsc --build",
     "db": "docker compose up"
   },
   "author": "Udacity",

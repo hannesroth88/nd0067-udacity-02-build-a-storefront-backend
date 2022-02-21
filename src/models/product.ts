@@ -20,7 +20,7 @@ export class ProductStore {
 
       return result.rows
     } catch (err) {
-      throw new Error(`Could not get Product. Error: ${err}`)
+      throw new Error(`Could not get Product: ${err}`)
     }
   }
 
@@ -37,7 +37,7 @@ export class ProductStore {
 
       return product
     } catch (err) {
-      throw new Error(`Could not get Product with id ${id}. Error: ${err}`)
+      throw new Error(`Could not get Product with id ${id}: ${err}`)
     }
   }
 
@@ -55,8 +55,7 @@ export class ProductStore {
 
       return resultProduct
     } catch (err) {
-      throw new Error(`Could not add new Product ${product.name}. Error: ${err}`)
+      throw new Error(`Could not add new Product ${product.name}: ${err}`)
     }
   }
-
 }

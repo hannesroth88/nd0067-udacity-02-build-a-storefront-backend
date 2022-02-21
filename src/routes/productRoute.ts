@@ -22,7 +22,7 @@ const create = async (req: Request, res: Response): Promise<void> => {
     const product: Product = {
       id: null,
       name: name,
-      price: price,
+      price: price
     }
 
     const productResponse = await store.create(product)

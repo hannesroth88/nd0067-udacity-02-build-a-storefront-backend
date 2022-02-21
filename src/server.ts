@@ -1,5 +1,5 @@
 import express = require("express")
-var cors = require('cors')
+var cors = require("cors")
 import authenticateRoutes from "./routes/authenticateRoute"
 import usersRoutes from "./routes/usersRoute"
 import productRoutes from "./routes/productRoute"

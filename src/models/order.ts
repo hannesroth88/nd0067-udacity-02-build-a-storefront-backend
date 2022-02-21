@@ -1,32 +1,21 @@
 // @ts-ignore
 import Client from "../database"
-import { Product } from "./product"
-
-export type OrderDb = {
-  id: number | null,
-  userId: number,
-  status: string
-}
-
-export type OrderProductDb = {
-  id: number | null,
-  orderId: number,
-  productId: string,
-  quantity:number
-}
 
 export type Order = {
   id: number | null
-  userId: number,
-  status: string,
-  products: [
-    id:number,
-    quantity:number
-   ]
-  }
+  userId: number
+  status: string
+}
+
+export type OrderProduct = {
+  id: number | null
+  orderId: number
+  productId: string
+  quantity: number
+}
 
 export class OrderStore {
-  async index(): Promise<OrderDb[]> {
+  async index(): Promise<Order[]> {
     try {
       // @ts-ignore
       const conn = await Client.connect()
@@ -38,11 +27,11 @@ export class OrderStore {
 
       return result.rows
     } catch (err) {
-      throw new Error(`Could not get Order. Error: ${err}`)
+      throw new Error(`Could not get Order: ${err}`)
     }
   }
 
-  async show(id: string): Promise<OrderDb[]> {
+  async show(id: string): Promise<Order[]> {
     try {
       // @ts-ignore
       const conn = await Client.connect()
@@ -55,61 +44,66 @@ export class OrderStore {
 
       return order
     } catch (err) {
-      throw new Error(`Could not get Order with id ${id}. Error: ${err}`)
+      throw new Error(`Could not get Order with id ${id}: ${err}`)
     }
   }
 
-  async showActiveByUser(user_id: string, status: string): Promise<OrderDb[]> {
+  async showCurrentByUser(userId: number): Promise<Order[]> {
     try {
       // @ts-ignore
       const conn = await Client.connect()
-      const sql = "SELECT * FROM orders WHERE \"userId\"=($1) AND status=($2)"
+      const sql = 'SELECT * FROM orders WHERE "userId"=($1) ORDER BY id DESC LIMIT 1'
 
-      const result = await conn.query(sql, [user_id, status])
+      const result = await conn.query(sql, [userId])
       const order = result.rows[0]
 
       conn.release()
 
       return order
     } catch (err) {
-      throw new Error(`Could not get Order with your inputs. Error: ${err}`)
+      throw new Error(`Could not get Order with your inputs: ${err}`)
     }
   }
 
-  async create(order: OrderDb): Promise<OrderDb> {
+  async create(order: Order): Promise<Order> {
     try {
-      const sql = "INSERT INTO orders (\"userId\", status) VALUES($1, $2) RETURNING *"
+      const sql = 'INSERT INTO orders ("userId", status) VALUES($1, $2) RETURNING *'
       // @ts-ignore
       const conn = await Client.connect()
 
       const result = await conn.query(sql, [order.userId, order.status])
 
       const resultOrder = result.rows[0]
+      // somehow userId comes back as string altough db is defined as bigint foreign key, db viewer shows number type.
+      resultOrder.userId = parseInt(resultOrder.userId)
 
       conn.release()
 
       return resultOrder
     } catch (err) {
-      throw new Error(`Could not add new Order for user ${order.userId}. Error: ${err}`)
+      throw new Error(`Could not add new Order for user ${order.userId}: ${err}`)
     }
   }
 
-  async addProduct(product_id: number, order_id: number, quantity: number): Promise<OrderDb> {
+  async addProduct(productId: number, orderId: number, quantity: number): Promise<Order> {
     try {
-      const sql = "INSERT INTO order_products (product_id,order_id,quantity) VALUES($1, $2, $3) RETURNING *"
+      const sql = 'INSERT INTO order_products ("productId","orderId",quantity) VALUES($1, $2, $3) RETURNING *'
       // @ts-ignore
       const conn = await Client.connect()
 
-      const result = await conn.query(sql, [product_id, order_id, quantity])
+      const result = await conn.query(sql, [productId, orderId, quantity])
 
       const resultOrder = result.rows[0]
+
+      // somehow userId comes back as string altough db is defined as bigint foreign key, db viewer shows number type.
+      resultOrder.orderId = parseInt(resultOrder.orderId)
+      resultOrder.productId = parseInt(resultOrder.productId)
 
       conn.release()
 
       return resultOrder
     } catch (err) {
-      throw new Error(`Could not add new a Product to Order. Error: ${err}`)
+      throw new Error(`Could not add new a Product to Order: ${err}`)
     }
   }
-
 }
