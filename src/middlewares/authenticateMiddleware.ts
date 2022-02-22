@@ -1,6 +1,6 @@
 import express from "express"
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
-import jwt from "jsonwebtoken"
 import authenticateService from "../services/authenticateService"
 
 const verifyAuthToken = (req: express.Request, res: express.Response, next: express.NextFunction) => {

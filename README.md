@@ -11,9 +11,9 @@ npm install
 
 ## Database
 1. install docker
-2. `npm run db` or `run docker compose up` to start the database
-   
-Database runs on port:5433
+2. `npm run db` or `run docker compose up` to start the database. The database runs on port:5433
+3. `db-migrate db:create full_stack_test` creates the test database
+4. `db-migrate db:create full_stack_dev` creates the dev database
 
 Database can be resetted with: `db-migrate reset`
 

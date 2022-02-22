@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Client from "../database"
 export type User = {
@@ -10,6 +11,7 @@ export type User = {
 export class UserStore {
   async index(): Promise<User[]> {
     try {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const conn = await Client.connect()
       const sql = "SELECT * FROM users"
@@ -26,6 +28,7 @@ export class UserStore {
 
   async show(id: number): Promise<User> {
     try {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const conn = await Client.connect()
       const sql = "SELECT * FROM users WHERE id=($1)"
@@ -44,6 +47,7 @@ export class UserStore {
   async create(u: User): Promise<User> {
     try {
       const sql = 'INSERT INTO users ("firstName","lastName","password") VALUES($1, $2, $3) RETURNING *'
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const conn = await Client.connect()
 

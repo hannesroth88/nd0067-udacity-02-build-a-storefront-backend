@@ -1,5 +1,6 @@
 import express = require("express")
-var cors = require("cors")
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const cors = require("cors")
 import authenticateRoutes from "./routes/authenticateRoute"
 import usersRoutes from "./routes/usersRoute"
 import productRoutes from "./routes/productsRoute"

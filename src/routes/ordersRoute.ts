@@ -20,7 +20,8 @@ const index = async (req: Request, res: Response): Promise<void> => {
 
 const show = async (req: Request, res: Response): Promise<void> => {
   try {
-    const order = await store.show(req.params.id)
+    const orderId = parseInt(req.params.id)
+    const order = await store.show(orderId)
     res.json(order)
   } catch (err) {
     console.log("Error showing order: " + err)

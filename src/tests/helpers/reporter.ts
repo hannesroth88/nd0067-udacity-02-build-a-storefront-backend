@@ -9,6 +9,7 @@ class CustomProcessor extends DisplayProcessor {
 
 jasmine.getEnv().clearReporters()
 jasmine.getEnv().addReporter(
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   new SpecReporter({
     spec: {
