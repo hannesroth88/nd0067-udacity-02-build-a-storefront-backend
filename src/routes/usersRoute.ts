@@ -43,6 +43,8 @@ const create = async (req: Request, res: Response): Promise<void> => {
     }
 
     const userResponse = await store.create(user)
+    // decided to get jwtToken from /authenticateRoute via API call
+    // const jwtToken = authenticateService.getJwtToken(userResponse)
     res.json(userResponse)
   } catch (err) {
     console.log("Error creating user: " + err)

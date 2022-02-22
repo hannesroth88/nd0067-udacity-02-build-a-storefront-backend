@@ -21,6 +21,9 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### Orders
 |REST|Route|Token required|
 |-------|---|---|
+|Index|orders [GET]||
+|Show|orders/:id [GET]||
+|Create|orders [POST]|yes|
 |Current Order by user *|orders/user/:id/current [GET]|yes|    
 |Add product to order|orders/:id/product [POST]|yes|
 

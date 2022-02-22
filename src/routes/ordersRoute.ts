@@ -87,11 +87,11 @@ const showCurrentByUser = async (req: Request, res: Response): Promise<void> => 
 
 const orderRoutes = (app: express.Application) => {
   app.use(express.json())
-  app.get("/orders", authenticateMiddleware.verifyAuthToken, index)
-  app.get("/orders/:id", authenticateMiddleware.verifyAuthToken, show)
+  app.get("/orders", index)
+  app.get("/orders/:id", show)
   app.post("/orders", authenticateMiddleware.verifyAuthToken, create)
   app.post("/orders/:id/products", authenticateMiddleware.verifyAuthToken, addProduct)
-  app.get("/orders/users/:id/current", authenticateMiddleware.verifyAuthToken, showCurrentByUser)
+  app.get("/orders/users/:id/current", showCurrentByUser)
 }
 
 export default orderRoutes

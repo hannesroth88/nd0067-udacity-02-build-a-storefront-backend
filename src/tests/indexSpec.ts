@@ -75,6 +75,14 @@ describe("Main Test", () => {
 
       expect(users.length > 0).toBeTrue()
     })
+
+    it("Get JWT token for userCreated /authorize (POST)", async () => {
+      const body = { id: userCreated.id, password: testUserNew.password }
+      const result = await axios.post("/authorize", body, AXIOS_OPTIONS)
+      jwtToken = result.data
+
+      expect(result.status).toBe(200)
+    })
   })
 
   var productCreated: Product

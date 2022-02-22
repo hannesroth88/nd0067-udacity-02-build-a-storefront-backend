@@ -48,8 +48,8 @@ const create = async (req: Request, res: Response): Promise<void> => {
 
 const productRoutes = (app: express.Application) => {
   app.use(express.json())
-  app.get("/products", authenticateMiddleware.verifyAuthToken, index)
-  app.get("/products/:id", authenticateMiddleware.verifyAuthToken, show)
+  app.get("/products", index)
+  app.get("/products/:id", show)
   app.post("/products", authenticateMiddleware.verifyAuthToken, create)
 }
 
